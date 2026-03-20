@@ -73,10 +73,10 @@ st.caption("Portfolio built with Streamlit | 2026")
 
 # --- SUMMARY PAGES ----
 climate_page = st.Page(
-    "Sustainability/Climate_change.py", title="Climate Change", icon="🌱", default=True
+    "Sustainability/Climate_change.py", title="Climate Change", icon="🌱"
 )
 gender_page = st.Page(
-    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon="⚖️", default=True
+    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon="⚖️"
 )
 
 
