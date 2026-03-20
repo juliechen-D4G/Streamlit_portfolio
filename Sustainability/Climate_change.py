@@ -39,5 +39,9 @@ st.header("🌡️ Analyse des Températures : Grandes Métropoles")
 try:
     with st.spinner('Chargement des données Berkeley Earth...'):
         df = load_major_city_data()
+    
+    # On affiche les données seulement si le chargement a réussi
+    st.dataframe(df.head(10))
 
-st.dataframe(df.head(10))
+except Exception as e:
+    st.error(f"Erreur lors du chargement des données : {e}")
