@@ -33,6 +33,49 @@ try:
 except Exception as e:
     st.error(f"Erreur : {e}")
 
-st.write(df['City'].unique())
+st.header("🌍 Carte Interactive des Températures Mondiales")
+
+try:
+    df = load_major_city_data()
+
+    # --- PRÉPARATION DES DONNÉES POUR LA CARTE ---
+    # Pour que l'animation soit fluide et lisible, on groupe par année et par ville
+    # On calcule la température moyenne annuelle par ville
+    map_df = df.groupby(['Year', 'City', 'Country', 'Latitude', 'Longitude'])['AverageTemperature'].mean().reset_index()
+
+    # On filtre pour ne garder qu'une donnée tous les 5 ou 10 ans 
+    # Cela évite que la carte soit trop lourde à charger dans le navigateur
+    year_step = st.slider("Choisir l'intervalle d'années (Précision)", 1, 20, 10)
+    map_df = map_df[map_df['Year'] % year_step == 0]
+
+    # --- CRÉATION DE LA CARTE ---
+    fig = px.scatter_geo(
+        map_df,
+        lat="Latitude",
+        lon="Longitude",
+        color="AverageTemperature",
+        hover_name="City",
+        size="AverageTemperature", # Optionnel : la taille du point varie avec la température
+        animation_frame="Year",      # C'est ici que la magie du "curseur temporel" opère
+        projection="natural earth",
+        color_continuous_scale=px.colors.sequential.YlOrRd, # Dégradé Jaune -> Orange -> Rouge
+        range_color=[map_df['AverageTemperature'].min(), map_df['AverageTemperature'].max()],
+        labels={'AverageTemperature': 'Temp (°C)'},
+        title="Évolution de la température des grandes métropoles"
+    )
+
+    # Optimisation de la mise en page
+    fig.update_layout(height=600, margin={"r":0,"t":50,"l":0,"b":0})
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    # --- NOTE MÉTHODOLOGIQUE ---
+    st.caption("""
+    **Note :** Les points représentent les 100 plus grandes villes mondiales du dataset Berkeley Earth. 
+    Utilisez le curseur en bas de la carte pour observer l'évolution depuis 1750.
+    """)
+
+except Exception as e:
+    st.error(f"Erreur lors de la création de la carte : {e}")
 
 
