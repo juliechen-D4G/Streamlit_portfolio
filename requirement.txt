@@ -1,0 +1,27 @@
+# --- Framework Principal ---
+streamlit
+
+# --- Manipulation de Données ---
+pandas
+numpy
+openpyxl  # Pour lire les fichiers Excel (données d'ONG/Gouv)
+
+# --- Visualisation de Données ---
+matplotlib
+seaborn
+plotly
+altair
+vega_datasets  # Très utile pour les fonds de cartes et datasets de test
+
+# --- Cartographie Avancée ---
+folium
+streamlit-folium
+geopandas  # Pour manipuler des fichiers de formes géographiques (SHP, GeoJSON)
+
+# --- Collecte de Données (Scraping) ---
+beautifulsoup4
+requests
+
+# --- Analyse Statistique (Optionnel mais recommandé) ---
+scipy
+statsmodels
