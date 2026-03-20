@@ -1,0 +1,45 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Environnements Virtuels (Très important) ---
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Streamlit & Environnement de travail ---
+.streamlit/config.toml
+.streamlit/secrets.toml
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# --- Données (Optionnel mais recommandé) ---
+# Si vous avez des fichiers CSV ou Excel très lourds (>100Mo), 
+# décommentez la ligne suivante :
+# data/*.csv
+
+# --- Logs ---
+*.log
