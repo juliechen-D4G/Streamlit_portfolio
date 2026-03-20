@@ -33,3 +33,6 @@ try:
 except Exception as e:
     st.error(f"Erreur : {e}")
 
+st.write(df['City'].unique())
+
+
