@@ -1,6 +1,9 @@
 # --- Framework Principal ---
 streamlit
 
+# --- Source de données ---
+kaggle
+
 # --- Manipulation de Données ---
 pandas
 numpy
