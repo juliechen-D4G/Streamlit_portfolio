@@ -70,3 +70,11 @@ st.info("👈 **Explore my work in the sidebar menu**: Data journalism investiga
 # --- FOOTER ---
 st.write("---")
 st.caption("Portfolio built with Streamlit | 2026")
+
+# --- SUMMARY ----
+Climate_change = st.Page(
+    "Sustainability/Climate_change.py", title="Climate Change", icon=":material/dashboard:", default=True
+)
+Gender_Equality = st.Page(
+    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon=":material/dashboard:", default=True
+)
