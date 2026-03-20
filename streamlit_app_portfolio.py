@@ -49,13 +49,13 @@ if st.get_option("client.showSidebarNavigation") and pg.selected_page == home_pa
 # --- SIDEBAR ---
     with st.sidebar:
     # st.image("your_photo.jpg", caption="Julie Chen") 
-    st.markdown("### Contact")
-    st.write("📧 juliechrystelle.chen@gmail.com")
-    st.write("🔗 [LinkedIn](https://www.linkedin.com/in/juliecchen/)")
-    st.write("📍 Santiago, Chile / Remote")
-    st.write("---")
-    st.markdown("### Languages")
-    st.write("🇫🇷 Native | 🇬🇧 C2 (Fluent) | 🇪🇸 Proficient")
+        st.markdown("### Contact")
+        st.write("📧 juliechrystelle.chen@gmail.com")
+        st.write("🔗 [LinkedIn](https://www.linkedin.com/in/juliecchen/)")
+        st.write("📍 Santiago, Chile / Remote")
+        st.write("---")
+        st.markdown("### Languages")
+        st.write("🇫🇷 Native | 🇬🇧 C2 (Fluent) | 🇪🇸 Proficient")
 
 # --- HEADER ---
     col1, col2 = st.columns([2, 1])
