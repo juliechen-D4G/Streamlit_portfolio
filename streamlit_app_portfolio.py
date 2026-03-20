@@ -7,8 +7,35 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- CUSTOM STYLE ---
-st.markdown("""
+# --- SUMMARY PAGES ----
+climate_page = st.Page(
+    "Sustainability/Climate_change.py", title="Climate Change", icon="🌱"
+)
+gender_page = st.Page(
+    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon="⚖️"
+)
+
+
+# Page d'accueil 
+home_page = st.Page(
+    "streamlit_app_portfolio.py", 
+    title="Home", 
+    icon="🏠", 
+    default=True
+)
+
+# ---  CRÉATION DE LA NAVIGATION AVEC SECTIONS ---
+
+pg = st.navigation({
+    "Main": [home_page],
+    "Sustainability": [climate_page],
+    "Social Justice": [gender_page]
+})
+
+# --- LOGIQUE D'AFFICHAGE CONDITIONNEL ---
+
+if st.get_option("client.showSidebarNavigation") and pg.selected_page == home_page:
+   st.markdown("""
     <style>
     .main {
         background-color: #f8f9fa;
@@ -71,29 +98,8 @@ st.info("👈 **Explore my work in the sidebar menu**: Data journalism investiga
 st.write("---")
 st.caption("Portfolio built with Streamlit | 2026")
 
-# --- SUMMARY PAGES ----
-climate_page = st.Page(
-    "Sustainability/Climate_change.py", title="Climate Change", icon="🌱"
-)
-gender_page = st.Page(
-    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon="⚖️"
-)
+else:
+    # Si la page sélectionnée n'est pas Home, pg.run() affichera le contenu 
+    # des fichiers Climate_change.py ou Gender_Equality.py proprement.
+    pg.run()
 
-
-# Page d'accueil (votre fichier actuel)
-home_page = st.Page(
-    "streamlit_app_portfolio.py", 
-    title="Home", 
-    icon="🏠", 
-    default=True
-)
-
-# --- 2. CRÉATION DE LA NAVIGATION AVEC SECTIONS ---
-
-pg = st.navigation({
-    "Sustainability": [climate_page],
-    "Social Justice": [gender_page]
-})
-
-# --- 3. EXÉCUTION ---
-pg.run()
