@@ -1,22 +1,14 @@
 import streamlit as st
 
-# Page Configuration
+# 1. Page Configuration (DOIT être au début)
 st.set_page_config(
     page_title="Julie Chen | Data, Policy & Impact",
     page_icon="🌍",
     layout="wide"
 )
 
-# --- SUMMARY PAGES ----
-climate_page = st.Page(
-    "Sustainability/Climate_change.py", title="Climate Change", icon="🌱"
-)
-gender_page = st.Page(
-    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon="⚖️"
-)
-
-
-# Page d'accueil 
+# 2. Define pages
+# Note: On laisse le fichier pointer vers lui-même pour la Home
 home_page = st.Page(
     "streamlit_app_portfolio.py", 
     title="Home", 
@@ -24,31 +16,35 @@ home_page = st.Page(
     default=True
 )
 
-# ---  CRÉATION DE LA NAVIGATION AVEC SECTIONS ---
+climate_page = st.Page(
+    "Sustainability/Climate_change.py", title="Climate Change", icon="🌱"
+)
 
+gender_page = st.Page(
+    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon="⚖️"
+)
+
+# 3. Setup Navigation
 pg = st.navigation({
     "Main": [home_page],
     "Sustainability": [climate_page],
     "Social Justice": [gender_page]
 })
 
-# --- LOGIQUE D'AFFICHAGE CONDITIONNEL ---
+# --- LOGIQUE D'AFFICHAGE ---
 
-if st.get_option("client.showSidebarNavigation") and pg.selected_page == home_page:
-   st.markdown("""
+if pg.selected_page == home_page:
+    # --- TOUT LE CONTENU HOME DOIT ÊTRE INDENTÉ ICI ---
+    
+    st.markdown("""
     <style>
-    .main {
-        background-color: #f8f9fa;
-    }
-    .stBadge {
-        background-color: #e9ecef;
-    }
+    .main { background-color: #f8f9fa; }
+    .stBadge { background-color: #e9ecef; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR ---
+    # SIDEBAR
     with st.sidebar:
-    # st.image("your_photo.jpg", caption="Julie Chen") 
         st.markdown("### Contact")
         st.write("📧 juliechrystelle.chen@gmail.com")
         st.write("🔗 [LinkedIn](https://www.linkedin.com/in/juliecchen/)")
@@ -57,9 +53,8 @@ if st.get_option("client.showSidebarNavigation") and pg.selected_page == home_pa
         st.markdown("### Languages")
         st.write("🇫🇷 Native | 🇬🇧 C2 (Fluent) | 🇪🇸 Proficient")
 
-# --- HEADER ---
+    # HEADER
     col1, col2 = st.columns([2, 1])
-
     with col1:
         st.title("Julie Chen")
         st.subheader("Data Analyst & PMP® Certified Project Manager")
@@ -69,10 +64,9 @@ if st.get_option("client.showSidebarNavigation") and pg.selected_page == home_pa
         datasets into actionable insights for social justice and environmental impact.
         """)
 
-# --- SECTION: TRI-DIMENSIONAL EXPERTISE ---
+    # EXPERTISE
     st.write("---")
     st.header("Core Expertise")
-
     kpi1, kpi2, kpi3 = st.columns(3)
 
     with kpi1:
@@ -90,16 +84,11 @@ if st.get_option("client.showSidebarNavigation") and pg.selected_page == home_pa
         st.write("PMO expertise, budget management, and sustainable value chain optimization.")
         st.caption("PMP® Certified & Cambridge SCM")
 
-# --- SECTION: NAVIGATION ---
     st.write("---")
     st.info("👈 **Explore my work in the sidebar menu**: Data journalism investigations, impact dashboards, and supply chain case studies.")
-
-# --- FOOTER ---
+    
     st.write("---")
     st.caption("Portfolio built with Streamlit | 2026")
 
-else:
-    # Si la page sélectionnée n'est pas Home, pg.run() affichera le contenu 
-    # des fichiers Climate_change.py ou Gender_Equality.py proprement.
-    pg.run()
-
+# 4. Lancer la navigation (Indispensable pour charger les autres pages)
+pg.run()
