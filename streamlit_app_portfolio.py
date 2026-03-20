@@ -71,10 +71,30 @@ st.info("👈 **Explore my work in the sidebar menu**: Data journalism investiga
 st.write("---")
 st.caption("Portfolio built with Streamlit | 2026")
 
-# --- SUMMARY ----
+# --- SUMMARY PAGES ----
 Climate_change = st.Page(
-    "Sustainability/Climate_change.py", title="Climate Change", icon=":material/dashboard:", default=True
+    "Sustainability/Climate_change.py", title="Climate Change", icon="🌱", default=True
 )
 Gender_Equality = st.Page(
-    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon=":material/dashboard:", default=True
+    "Social_Justice/Gender_Equality.py", title="Gender Equality", icon="⚖️", default=True
 )
+
+
+# Page d'accueil (votre fichier actuel)
+home_page = st.Page(
+    "streamlit_app_portfolio.py", 
+    title="Home", 
+    icon="🏠", 
+    default=True
+)
+
+# --- 2. CRÉATION DE LA NAVIGATION AVEC SECTIONS ---
+
+pg = st.navigation({
+    "Main": [home_page],
+    "Sustainability": [climate_page],
+    "Social Justice": [gender_page]
+})
+
+# --- 3. EXÉCUTION ---
+pg.run()
