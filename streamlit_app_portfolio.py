@@ -91,7 +91,6 @@ home_page = st.Page(
 # --- 2. CRÉATION DE LA NAVIGATION AVEC SECTIONS ---
 
 pg = st.navigation({
-    "Main": [home_page],
     "Sustainability": [climate_page],
     "Social Justice": [gender_page]
 })
