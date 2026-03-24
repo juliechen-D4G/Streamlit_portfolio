@@ -22,6 +22,19 @@ def load_major_city_data():
         df = pd.read_csv("./data/GlobalLandTemperaturesByMajorCity.csv")
     df['dt'] = pd.to_datetime(df['dt'])
     df['Year'] = df['dt'].dt.year
+
+    def parse_coord(coord):
+        if pd.isna(coord):
+            return None
+        coord = str(coord)
+        if coord[-1] in ['N', 'E']:
+            return float(coord[:-1])
+        elif coord[-1] in ['S', 'W']:
+            return -float(coord[:-1])
+        return float(coord)
+    
+    df['Latitude'] = df['Latitude'].apply(parse_coord)
+    df['Longitude'] = df['Longitude'].apply(parse_coord)
     return df.dropna(subset=['AverageTemperature'])
 
 # 3. AFFICHAGE
@@ -48,6 +61,9 @@ try:
     year_step = st.slider("Choisir l'intervalle d'années (Précision)", 1, 20, 10)
     map_df = map_df[map_df['Year'] % year_step == 0]
 
+    # Add an absolute size column
+    map_df['size_col'] = map_df['AverageTemperature'] + abs(map_df['AverageTemperature'].min()) + 1
+
     # --- CRÉATION DE LA CARTE ---
     fig = px.scatter_geo(
         map_df,
@@ -55,7 +71,7 @@ try:
         lon="Longitude",
         color="AverageTemperature",
         hover_name="City",
-        size="AverageTemperature", # Optionnel : la taille du point varie avec la température
+        size="size_col", # Optionnel : la taille du point varie avec la température
         animation_frame="Year",      # C'est ici que la magie du "curseur temporel" opère
         projection="natural earth",
         color_continuous_scale=px.colors.sequential.YlOrRd, # Dégradé Jaune -> Orange -> Rouge
