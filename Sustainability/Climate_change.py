@@ -71,7 +71,7 @@ try:
         lon="Longitude",
         color="AverageTemperature",
         hover_name="City",
-        size="size_col", # Optionnel : la taille du point varie avec la température
+        #size="size_col", # Optionnel : la taille du point varie avec la température
         animation_frame="Year",      # C'est ici que la magie du "curseur temporel" opère
         projection="natural earth",
         color_continuous_scale=px.colors.sequential.YlOrRd, # Dégradé Jaune -> Orange -> Rouge
